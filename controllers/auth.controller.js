@@ -67,6 +67,8 @@ export const login = async (req, res, next) => {
     return res
       .status(200)
       .cookie("collab_token", token, {
+        secure: true, // Required for cross-site cookies in HTTPS
+        sameSite: "None", // Allows cross-site usage
         httpOnly: true,
       })
       .json({ collab_token: token, message: "Login in successfully!" });
